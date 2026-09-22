@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#!/bin/bash
-
 initialize_system() {
     if [ -d "active_logs" ]; then
         echo "active_logs already exists."
@@ -23,6 +21,9 @@ initialize_system() {
         echo "Creating reports..."
         mkdir reports
     fi
+}
+secure_data() {
+    echo "Securing active_logs directory..."
 }
 
 initialize_system
