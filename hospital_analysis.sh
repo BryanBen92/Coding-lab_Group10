@@ -2,6 +2,7 @@
 
 process_vitals() {
     echo "Scanning for CRITICAL vitals..."
+    echo "=== Critical Alerts Report: $(date) ===" >> reports/critical_alerts.txt
 
     if [ -f active_logs/heart_rate_log.log ]; then
         grep "CRITICAL" active_logs/heart_rate_log.log | awk -F' \| ' '{print $1, $2, $3}' >> reports/critical_alerts.txt
