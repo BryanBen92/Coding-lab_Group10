@@ -16,5 +16,13 @@ initialize_system() {
         echo "Creating archived_logs..."
         mkdir archived_logs
     fi
+
+    if [ -d "reports" ]; then
+        echo "reports already exists."
+    else
+        echo "Creating reports..."
+        mkdir reports
+    fi
 }
 
+initialize_system
