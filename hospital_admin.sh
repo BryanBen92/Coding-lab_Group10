@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#!/bin/bash
-
 initialize_system() {
     if [ -d "active_logs" ]; then
         echo "active_logs already exists."
@@ -24,5 +22,12 @@ initialize_system() {
         mkdir reports
     fi
 }
+secure_data() {
+    echo "Securing active_logs directory..."
+    chmod 700 active_logs
+     ls -l active_logs
+}
 
 initialize_system
+secure_data
+echo "System Environment Secured on $(date)"
