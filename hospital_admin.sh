@@ -24,7 +24,7 @@ initialize_system() {
 }
 secure_data() {
     echo "Securing active_logs directory..."
-    chmod 700 active_logs
+    chmod 600 active_logs/*.log
      ls -l active_logs
 }
 
