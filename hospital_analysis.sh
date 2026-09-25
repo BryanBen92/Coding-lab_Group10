@@ -20,3 +20,23 @@ process_vitals() {
 
     echo "Critical alerts written to reports/critical_alerts.txt"
 }
+
+water_audit() {
+    total=0
+    count=0
+    while IFS='|' read -r timestamp device usage status; do
+        device=$(echo "$device" | xargs)
+        usage=$(echo "$usage" | xargs)
+        if [ "$device" == "ICU_WATER_RESERVE" ]; then
+            total=$(echo "$total + $usage" | bc)
+            count=$((count + 1))
+        fi
+    done < active_logs/water_usage_log.log
+
+    if [ "$count" -gt 0 ]; then
+        avg=$(echo "$total / $count" | bc -l)
+        printf "Average ICU water usage: %.2f L\n" "$avg"
+    else
+        echo "No ICU_WATER_RESERVE data found."
+    fi
+}
